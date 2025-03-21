@@ -28,6 +28,8 @@
     <div id="result">Hello</div><br />
     <audio id="alarmSound" src="mixkit-confirmation-tone-2867.wav"></audio>
 
+    <audio id="alarmSoundUpdate" src="mixkit-confirmation-tone-2573.wav"></audio>
+
     <fieldset>
         <legend><b>Autorização</b></legend>
 
@@ -215,6 +217,11 @@
         function playAlarm() {
             const alarmSound = document.getElementById("alarmSound");
             alarmSound.play();
+        }
+
+        function playAlarmUpdate() {
+            const alarmSoundUpdate = document.getElementById("alarmSoundUpdate");
+            alarmSoundUpdate.play();
         }
 
         let barcodeValue = "232141"; // Store the scanned barcode
@@ -521,7 +528,10 @@
 
 
                 console.log("Google Sheet updated:", updateResponse.data);
+                console.log(updateResponse.data);
+
                 alert("Planilha Atualizada.");
+                playAlarmUpdate();
 
             } catch (error) {
                 console.error("Error updating Google Sheet:", error);
