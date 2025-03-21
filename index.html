@@ -529,9 +529,12 @@
 
                 console.log("Google Sheet updated:", updateResponse.data);
                 console.log(updateResponse.data);
+                
 
                 alert("Planilha Atualizada.");
                 playAlarmUpdate();
+                let status_view = document.getElementById("view_status");
+                view_status.style.color="red";
 
             } catch (error) {
                 console.error("Error updating Google Sheet:", error);
