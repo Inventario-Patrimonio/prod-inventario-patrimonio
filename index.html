@@ -68,7 +68,7 @@
         </p>
         <p> <span id="view_sala"></span>
         <p>
-        <p> <textarea id="edit_sala" readonly> </textarea> </p>
+        <p> <textarea id="edit_sala"> </textarea> </p>
         </p>
 
         <p>
@@ -87,6 +87,7 @@
                 <option value="Não Tombado"> Bem Não Tombado - NTB </option>
                 <option value="Não Relacionado"> Bem Não Relacionado - Tab. Espec. </option>
                 <option value="Descrição Incorreta"> Descrição Incorreta - DI </option>
+                <option value="Local Incorreto"> Local Incorreto - LI </option>
             </select>
         </p>
         </p>
@@ -427,12 +428,14 @@
                 const updates = {
                     "B": document.getElementById("status").value,
                     "D": document.getElementById("edit_descricao").value,
+                    "F": document.getElementById("edit_sala").value,
                     
                 };
 
 
                 const requests = [];
-                for (const column in updates) {
+                
+                /*for (const column in updates) {
                     const range = `${sheetName}!${column}${rowIndex}`;
                     requests.push({
                         updateCells: {
@@ -453,7 +456,7 @@
                             }]
                         }
                     });
-                }
+                }*/
                 const data = {
                     requests: requests,
                     /* includeSpreadsheetInResponse: false,
@@ -515,7 +518,31 @@
                                         }
                                     ]
                                 }
-                            }
+                            },
+
+                            {
+                                updateCells: {
+                                    range: {
+                                        endRowIndex: rowIndex,
+                                        startRowIndex: rowIndex-1,
+                                        startColumnIndex: 3,
+                                        endColumnIndex: 4,
+                                        sheetId: 146291137
+                                    },
+                                    fields: "userEnteredValue",
+                                    rows: [
+                                        {
+                                            values: [
+                                                {
+                                                    userEnteredValue: {
+                                                        stringValue: `${edit_sala}`
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
                         ]
                     }
                     ,
